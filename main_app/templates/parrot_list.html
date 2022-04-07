@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Common Pet Parrots:</h1>
+    {% for parrot in parrots %}
+    <h3>Name: {{parrot.name}}</h3>
+    {% endfor %}
+{% endblock %}
