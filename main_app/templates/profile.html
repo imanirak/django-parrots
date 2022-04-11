@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>{{ username }}'s collection:</h1>
+
+{% for parrot in parrots %}
+<a href="/parrots/{{ parrot.id }}">
+  <h3>{{ parrot.name }}</h3>
+</a>
+
+{% endfor %}
+
+{% endblock %}

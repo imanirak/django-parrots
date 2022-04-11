@@ -2,12 +2,13 @@ from pipes import Template
 from django.shortcuts import render
 from django.urls import path
 from . import views
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView
-
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -60,3 +61,22 @@ class Parrot_List(TemplateView):
         context['parrots'] = parrots
         
         return context
+    
+class ParrotCreate(CreateView):
+    model = Parrot
+    fields = '__all__'
+    success_url = '/parrots'
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/parrots')
+
+
+# add this new view function
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    cats = Cat.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'parrots': parrots})

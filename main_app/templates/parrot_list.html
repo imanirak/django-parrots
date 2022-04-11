@@ -1,7 +1,32 @@
+# <!-- main_app/templates/index.html -->
 {% extends 'base.html' %}
+
+{% block title %}
+Cat List
+{% endblock %}
+
 {% block content %}
-    <h1>Common Pet Parrots:</h1>
-    {% for parrot in parrots %}
-    <h3>Name: {{parrot.name}}</h3>
+
+<form>
+    <div>
+        <!-- searches for the name of the cat -->
+        <input type="text" name="name" placeholder="name"/>
+        <input type="submit" value="Search"/>
+    </div>
+    <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
+    <a href="{% url 'parrot_list' %}">Clear Search</a>
+</form>
+
+<h1>{{header}}</h1>
+    {% for cat in cats %}
+    <img src="{{parrot.img}}" alt="{{parrot.name}}">
+        <a href="{% url 'parrot_detail' cat.pk %}">
+            <h3>Name: {{parrot.name}}</h3>
+        </a>
+        <h3>Age: {{parrot.age}}</h3>
+        <h3>Gender: {{parrot.gender}}</h3>
+        <p>Adopted By: 
+            <a href='/user/{{parrot.user.username}}'>{{parrot.user.username}}</a>
+        </p>
     {% endfor %}
 {% endblock %}
