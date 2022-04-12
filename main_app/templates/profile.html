@@ -1,14 +1,16 @@
-{% extends 'base.html' %}
 
-{% block body %}
+{% extends 'base.html'%}
+
+{% block content %}
+
 
 <h1>{{ username }}'s collection:</h1>
 
 {% for parrot in parrots %}
-<a href="/parrots/{{ parrot.id }}">
+<a href="/parrots/{{parrot.id}}"></a>
   <h3>{{ parrot.name }}</h3>
+  <img src="{{parrot.img}}" alt="{{parrot.name}}" width="500" height="500">
 </a>
-
 {% endfor %}
 
 {% endblock %}

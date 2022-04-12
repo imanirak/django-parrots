@@ -1,0 +1,15 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+
+<div>
+  <img src="{{parrot.img}}" alt="{{parrot.name}}" />
+</div>
+    <h1>{{parrot.name}}</h1>
+</div>
+<div>
+    <a href="{% url 'parrot_update' parrot.pk %}">Edit Parrot</a>
+    <a href="{% url 'parrot_delete' parrot.pk %}">Delete Parrot</a>
+</div>
+
+{% endblock %}
