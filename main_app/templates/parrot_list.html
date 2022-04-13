@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Parrot List
+🦜   List
 {% endblock %}
 
 {% block content %}
@@ -12,19 +12,33 @@ Parrot List
       
         <input type="text" name="name" placeholder="name"/>
         <input type="submit" value="Search"/>
+          <!-- this a tag will redirect back to parrot list without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
+    <a class ="clear" href="{% url 'parrot_list' %}">Clear Search</a>
     </div>
-    <!-- this a tag will redirect back to parrot list without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
-    <a href="{% url 'parrot_list' %}">Clear Search</a>
+  
 </form>
 
 <h1>{{header}}</h1>
-    {% for parrot in parrots %}
-    <img src="{{parrot.img}}" alt="{{parrot.name}}" width="500" height="500">
-        <a href="{% url 'parrot_detail' parrot.pk %}">
-            <h3>Name: {{parrot.name}}</h3>
-        </a>
-        <p>image provided by: 
-            <a href='/user/{{parrot.user.username}}'>{{parrot.user.username}}</a>
-        </p>
-    {% endfor %}
+<div class="container">
+
+
+
+    <div class="column">    
+        {% for parrot in parrots %}
+        <img src="{{parrot.img}}" alt="{{parrot.name}}">
+            <a href="{% url 'parrot_detail' parrot.pk %}">
+                <h3>Name: {{parrot.name}}</h3>
+            </a>
+            <p>image provided by: 
+                <a href='/user/{{parrot.user.username}}'>{{parrot.user.first_name}} {{parrot.user.last_name}}</a>
+            </p>
+    
+
+            {% endfor %}
+</div>
+
+</div>
+
+   
+  
 {% endblock %}

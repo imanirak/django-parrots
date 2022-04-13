@@ -45,6 +45,8 @@ class About(TemplateView):
            
 #            ]
 
+
+
 class Parrot_List(TemplateView):
     template_name= 'parrot_list.html'
 
@@ -98,5 +100,6 @@ class Parrot_Delete(DeleteView):
 # add this new view function
 def profile(request, username):
     user = User.objects.get(username=username)
+    first_name = User.objects.get(first_name=user.first_name)
     parrots = Parrot.objects.filter(user=user)
-    return render(request, 'profile.html', {'username':username, 'parrots': parrots} )
+    return render(request, 'profile.html', {'username':username, 'parrots': parrots, 'first_name':first_name} )
