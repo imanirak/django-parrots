@@ -57,7 +57,7 @@ input {
     color:white;
     padding:5px;
     background-color:transparent;
-    border-radius:2em;
+    border-radius:0.5em;
     text-transform: uppercase;
     border-style:solid;
     border: 2px solid white;
@@ -65,7 +65,7 @@ input {
 }
 
 input[type=text] {
-    width: 15%;
+    width: 150px;
     margin: 8px 0;
     box-sizing: border-box;
 
@@ -102,3 +102,4 @@ h3 {
   justify-content:center;
 
 }
+

@@ -3,7 +3,7 @@ from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect #a class to handle sending http responses
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
-from .models import Parrot
+from .models import Parrot, ParrotSnacks
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
@@ -103,3 +103,29 @@ def profile(request, username):
     first_name = User.objects.get(first_name=user.first_name)
     parrots = Parrot.objects.filter(user=user)
     return render(request, 'profile.html', {'username':username, 'parrots': parrots, 'first_name':first_name} )
+
+
+def parrotsnacks_index(request):
+    parrotsnacks = ParrotSnacks.objects.all()
+    return render(request, 'parrotsnacks_index.html', {'parrotsnacks':parrotsnacks})
+
+def parrotsnacks_show(request, parrotsnack_id):
+    parrotsnack = ParrotSnacks.objects.get(id=parrotsnack_id)
+    return render(request, 'parrotsnacks_show.html', {'parrotsnack':parrotsnack})
+
+class ParrotSnacksCreate(CreateView):
+    model = ParrotSnacks
+    fields = '__all__'
+    template_name='parrotsnacks_form.html'
+    success_url='/parrotsnacks'
+    
+class ParrotSnacksUpdate(UpdateView):
+    model = ParrotSnacks
+    fields = ['name']
+    template_name = 'parrotsnacks_update.html'
+    success_url='/parrotsnacks'
+
+class ParrotSnacksDelete(DeleteView):
+    model = ParrotSnacks
+    template_name = 'parrotsnacks_confirm_delete.html'
+    success_url = '/parrotsnacks'

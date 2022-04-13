@@ -1,0 +1,17 @@
+<!-- templates/parrotsnacks_index.html -->
+{% extends 'base.html' %}
+{% block body %}
+
+<h1>Parrot Snacks List</h1>
+
+{% for parrotsnack in parrotsnacks %}
+    <div>
+        <a href="{% url 'parrotsnacks_show' parrotsnack.id %}">
+            <div class="card-content">
+                <span>{{ parrotsnack.name }}</span>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+{% endblock %}

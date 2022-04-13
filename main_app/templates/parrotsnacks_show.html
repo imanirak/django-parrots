@@ -1,0 +1,17 @@
+<!-- templates/parrotsnacks_show.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Parrot Snack Details</h1>
+
+<div>
+    <div>
+        <span>{{ parrotsnack.name }}</span>
+  
+    </div>
+    <div>
+        <a href="{% url 'parrotsnacks_update' parrotsnack.id %}">Edit</a>
+        <a href="{% url 'parrotsnacks_delete' parrotsnack.id %}">Delete</a>
+    </div>
+</div>
+{% endblock %}
