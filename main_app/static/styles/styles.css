@@ -65,11 +65,10 @@ input {
 }
 
 input[type=text] {
-    width: 10%;
+    width: 15%;
     margin: 8px 0;
     box-sizing: border-box;
-    display: block;
-   
+
   }
 
 
