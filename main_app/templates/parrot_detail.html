@@ -5,6 +5,13 @@
 <div class="container">
   <div>
     <img src="{{parrot.img}}" alt="{{parrot.name}}" width="500" height="500" />
+    <ul>
+      {% for parrotsnack in parrot.parrotsnacks.all %}
+          <h4>{{parrotsnack.name}}</h4>
+      {% empty %}
+          <div>This Parrot currently has no snacks. </div>
+      {% endfor %}
+  </ul>
   </div>
   
   <di class="update">

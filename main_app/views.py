@@ -71,7 +71,7 @@ class Parrot_List(TemplateView):
     
 class ParrotCreate(CreateView):
     model = Parrot
-    fields = ['name', 'img']
+    fields = ['name', 'img','parrotsnacks']
     success_url = '/parrots'
     
     def form_valid(self, form):
@@ -87,7 +87,7 @@ class Parrot_Detail(DetailView):
 
 class Parrot_Update(UpdateView):
     model = Parrot
-    fields = ['name', 'img']
+    fields = ['name', 'img', 'parrotsnacks']
     template_name = "parrot_update.html"
     def get_success_url(self):
         return reverse('parrot_detail', kwargs={'pk': self.object.pk})
@@ -95,7 +95,7 @@ class Parrot_Update(UpdateView):
 class Parrot_Delete(DeleteView):
     model = Parrot
     template_name = 'parrot_delete_confirmation.html'
-    success_url = "/parrot/"
+    success_url = "/parrots/"
 
 # add this new view function
 def profile(request, username):
